@@ -72,7 +72,7 @@ class Signup extends Component {
         if( this.props.loading){
             form = <Preloader />
         }
-        if( this.props.toBeRedirected || this.props.signupMsg !== 'Email already exist'){
+        if( this.props.toBeRedirected){
            return <Redirect to='/login' />
         }
 
