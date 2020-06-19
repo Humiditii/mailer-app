@@ -1,24 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import Bone from './containers/Bone/Bone';
+import Signup from './containers/Pages/AuthPages/Signup/Signup';
+import Signin from './containers/Pages/AuthPages/Signin/Signin';
+import home from './containers/Pages/Home/Home';
+import FileExtract from './containers/Pages/converter/FileExtract/FileExtract';
+import ViewFiles from './containers/Pages/converter/viewConvert/ViewFiles';
+import Logout from './containers/Pages/AuthPages/Logout/Logout';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <Bone>
+        <Switch>
+          <Route path='/register' component={Signup} />
+          <Route path='/login' component={Signin} />
+          <Route path='/convert' component={FileExtract} />
+          <Route path='/files_converted' component={ViewFiles} />
+          <Route path='/logout' component={Logout} />
+          <Route path='/' exact component={home} /> 
+        </Switch>
+     </Bone>
     </div>
   );
 }
