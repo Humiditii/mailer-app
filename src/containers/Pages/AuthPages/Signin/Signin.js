@@ -35,7 +35,7 @@ class Signin extends Component {
     render(){
 
         const config = {
-            name: ['username', 'password'],
+            name: ['Email', 'password'],
             type: ['text',  'password'],
             icon: ['account_circle', 'security']
         }
