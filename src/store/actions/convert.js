@@ -30,7 +30,27 @@ export const getConvertedFiles = ([...fileDetails]) => {
     }
 }
 
+export const emptyFile = () => {
+    return {
+        type: actionTypes.EMPTY_FILE,
+        emptyFIle: 'Empty File, Please Select A Valid XML File'
+    }
+}
 
+export const clear = () => {
+    return {
+        type: actionTypes.CLEAR_MESSAGE
+    }
+}
+
+
+export const clearMessage = () => {
+    return dispatch => {
+        setTimeout(() => {
+           dispatch( clear() ); 
+        }, 3*1000);
+    }
+}
 
 export const conversionProcess = (token, fileToConvert) => {
     return dispatch => {
@@ -58,7 +78,7 @@ export const conversionProcess = (token, fileToConvert) => {
             dispatch( conversionSuccess(result.data.file_name, fileContentArr) )
 
         }).catch( err => {
-            console.log(err)
+            //console.log(err)
             dispatch( conversionFailed(err))
         })
 
@@ -78,10 +98,10 @@ export const getFiles = (token) => {
 
         axios.get(endpoint, config).then( response => {
            dispatch(getConvertedFiles([...response.data.data]) )
-            console.log(response);
+            //console.log(response);
         }).catch( err => {
             dispatch( conversionFailed(err) )
-            console.log(err)
+            //console.log(err)
         });
 
     }

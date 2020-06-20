@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Aux from '../../../../hoc/Auxillary';
 import {checkAuthState} from '../../../../store/actions/auth';
-import {conversionProcess} from '../../../../store/actions/convert';
+import {conversionProcess, emptyFile, clearMessage } from '../../../../store/actions/convert';
 import {connect} from 'react-redux';
 import Button from '../../../../components/Ui/Button/Button';
 import classes from './fileExtract.module.css';
@@ -25,10 +25,15 @@ class FileExtract extends Component {
       onFileChange = (event) => {
           this.setState({selectedFile: event.target.files[0]})
       }
-      
+
       handleSubmit = (event) => {
         event.preventDefault();
-        this.props.onUploadFile(this.props.token, this.state.selectedFile)
+        if(!this.state.selectedFile){
+           this.props.onFileEmpty();
+           this.props.onClear();
+        }else{
+            this.props.onUploadFile(this.props.token, this.state.selectedFile)
+        }
         //console.log(this.state.selectedFile);
       }
 
@@ -36,6 +41,7 @@ class FileExtract extends Component {
         let form = (
             <div className={classes.extract} >
                     <h5>Upload A XML File To Convert</h5><br/><br/><br/>
+                        <p>{this.props.fileEmpty}</p>
                     <div className='container'>
                             <form onSubmit={this.handleSubmit}>
                                 <div className="file-field input-field">
@@ -80,13 +86,16 @@ const mapStateToProps = state => {
     return {
         token: state.auth.token,
         fileContent:[...state.convert.filecontent],
-        loading: state.convert.loading
+        loading: state.convert.loading,
+        fileEmpty: state.convert.fileEmpty
     }
 }
 
 const mapPropsToState = dispatch => {
     return {
         onUploadFile: (token, fileToConvert) => {dispatch (conversionProcess(token, fileToConvert )) },
+        onFileEmpty: () => { dispatch( emptyFile() ) },
+        onClear: () => { dispatch( clearMessage() ) },
         onAutoSignIn: () => { dispatch(checkAuthState()) }
     }
 }

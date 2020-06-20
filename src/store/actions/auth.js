@@ -91,7 +91,7 @@ export const signUp = (email,password) => {
                 'Content-Type': 'application/json',
             }
         }).then(response => {   
-            console.log(response);
+            //console.log(response);
            dispatch(authSignUp(response.data.message));
            
         }).catch(err => {
