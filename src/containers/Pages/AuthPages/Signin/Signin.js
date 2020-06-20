@@ -66,7 +66,7 @@ class Signin extends Component {
             form = <Preloader />
         }
         if( this.props.token ){
-            return <Redirect to='/files_converted' />
+            return <Redirect to='/convert' />
         }
         return (
             <Aux>
