@@ -14,7 +14,7 @@ class Signin extends Component {
 //     console.log(this.props);
 // }
     state = {
-        username : null,
+        email : null,
         password: null
     }
 
@@ -28,8 +28,8 @@ class Signin extends Component {
 
     onSubmitHandler = (event) => {
         event.preventDefault();
-        const {username, password} = this.state;
-        this.props.onSignIn(username, password);
+        const {email, password} = this.state;
+        this.props.onSignIn(email, password);
     }
 
     render(){
@@ -95,7 +95,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSignIn: (username, password) => { dispatch(signIn(username, password)) }
+        onSignIn: (email, password) => { dispatch(signIn(email, password)) }
     }
 }
 
