@@ -28,7 +28,7 @@ class Navbar extends Component  {
                 name: ['Home', 'Files Converted', 'Convert', 'Logout' ]
             }
         }
-
+        
         return (
             <Aux>
 

@@ -65,7 +65,8 @@ const authSuccess = (state, action) => {
         userId: action.userId,
         role: action.role,
         authMsg: action.authMessage,
-        toBeRedirected: true
+        toBeRedirected: true,
+        error: false
     }
 }
 
@@ -75,7 +76,8 @@ const authLogout = (state, action) => {
         token: null,
         userId: null,
         role: null,
-        authMsg: null
+        authMsg: null,
+        toBeRedirected: false
     }
 }
 const reducer = (state=initialState, action) => {

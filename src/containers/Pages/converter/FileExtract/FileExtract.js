@@ -17,7 +17,6 @@ class FileExtract extends Component {
     componentDidMount(){
         this.props.onAutoSignIn()
     }
-
     // constructor(props) {
     //     super(props);
     //     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,10 +25,11 @@ class FileExtract extends Component {
       onFileChange = (event) => {
           this.setState({selectedFile: event.target.files[0]})
       }
+      
       handleSubmit = (event) => {
         event.preventDefault();
         this.props.onUploadFile(this.props.token, this.state.selectedFile)
-        console.log(this.state.selectedFile);
+        //console.log(this.state.selectedFile);
       }
 
     render(){
@@ -68,7 +68,9 @@ class FileExtract extends Component {
 
         return(
             <Aux>
-                {form}
+                <div style={{minHeight:'100vh'}}>
+                    {form}
+                </div>
             </Aux>
         )
     }

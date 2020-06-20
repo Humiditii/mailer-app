@@ -49,7 +49,7 @@ export const conversionProcess = (token, fileToConvert) => {
         }
     
         axios.post(endpoint, formData, config ).then( result => {
-            console.log(result)
+            //console.log(result)
             const fileContentArr = []
             for (const x of result.data.file_content ) {
                fileContentArr.push(x); 

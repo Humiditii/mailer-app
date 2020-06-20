@@ -119,12 +119,12 @@ export const signIn = (email,password) => {
         const endpoint = '/auth/signin';
 
         axios.post(endpoint, body, config).then(response => {
-            console.log(response);
-            if( response.data.message === 'User not found'){
-                dispatch(authFail(response.data.message))
+            //console.log(response.data.message);
+            if( response.data.message === 'User does not exist'){
+               return dispatch(authFail(response.data.message))
             } 
-            if( response.data.statusCode === 400){
-                dispatch(authFail(response.data.message))
+            if( response.data.message === 'Invalid Password'){
+                return dispatch(authFail(response.data.message))
             }
             else{
                 const token = response.data.token;
@@ -146,7 +146,7 @@ export const signIn = (email,password) => {
             
             
         }).catch( err=> {
-            console.log(err)
+            //console.log(err)
             dispatch(authFail(err.message));
         });
     }

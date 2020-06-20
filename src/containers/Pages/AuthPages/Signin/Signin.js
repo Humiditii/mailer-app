@@ -25,7 +25,7 @@ class Signin extends Component {
             [item]: event.target.value
         }
         this.setState(updateFields);
-        console.log(this.state)
+        //console.log(this.state)
     }
 
     onSubmitHandler = (event) => {

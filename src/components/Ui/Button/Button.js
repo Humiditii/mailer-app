@@ -7,9 +7,8 @@ const button = props => {
     const btnColour = props.btncolour;
     btnStyles[0] = btnStyles[0] + btnColour;
     let button = (
-        <button type={props.action} className={btnStyles[0]}>
-
-            <i className={btnStyles[1]}>{props.iconname}</i>{props.btnname}
+            <button type={props.action} className={btnStyles[0]}>
+                <i className={btnStyles[1]}>{props.iconname}</i>{props.btnname}
             </button>
     );
 
