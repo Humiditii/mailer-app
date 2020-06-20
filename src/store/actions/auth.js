@@ -110,7 +110,7 @@ export const signIn = (email,password) => {
             email: email,
             password: password
         }
-
+        //console.log(body)
         const config =  {
             headers: {
                 'Content-Type': 'application/json'

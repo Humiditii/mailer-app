@@ -18,12 +18,14 @@ class Signin extends Component {
         password: null
     }
 
+
     inputHandler = (event, item ) => {
         const updateFields = {
             ...this.state,
             [item]: event.target.value
         }
         this.setState(updateFields);
+        console.log(this.state)
     }
 
     onSubmitHandler = (event) => {
@@ -35,7 +37,7 @@ class Signin extends Component {
     render(){
 
         const config = {
-            name: ['Email', 'password'],
+            name: ['email', 'password'],
             type: ['text',  'password'],
             icon: ['account_circle', 'security']
         }
