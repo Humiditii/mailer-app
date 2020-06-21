@@ -17,3 +17,6 @@ export const GENERATED_PINS = 'GENERATED_PINS';
 export const GET_CONVERTED_FILES = 'GET_CONVERTED_FILES';
 export const EMPTY_FILE = 'EMPTY_FILE';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
+export const GET_FILE = 'GET_FILE';
+export const CLOSE_FILE = 'CLOSE_FILE';
+export const GET_FILE_FAILED = 'GET_FILE_FAILED';

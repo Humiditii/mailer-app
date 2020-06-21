@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Aux from '../../../../hoc/Auxillary';
-import {getFiles} from '../../../../store/actions/convert';
+import {getFiles, getFIleprocess} from '../../../../store/actions/convert';
 import { checkAuthState } from '../../../../store/actions/auth';
 import {connect} from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -18,11 +18,25 @@ class ViewFiles extends Component {
         alert('Hello')
     }
 
+    inputHandler = (event, item ) => {
+        event.preventDefault();
+        this.props.onGetFile(this.props.token, item)
+        
+        // const updateFields = {
+        //     ...this.state,
+        //     [item]: event.target.value
+        // }
+        // this.setState(updateFields);
+    }
+
     render(){
         let tables = (
                 <div>
                    <h5 align='center' >List of files Converted</h5> <br/>
                    <p align='center'>Content appears here once the show bittom is clicked</p>
+                   {this.props.singleFIle.map( (item, index) => (
+                        <p align='center' key={index}>{item}</p>
+                    ) )}
                     <div className='responsive-table'>
                         <table>
                                 <thead>
@@ -44,7 +58,8 @@ class ViewFiles extends Component {
                                                 {new Date().getFullYear(item.convert_date)+'-'+new Date().getMonth(item.convert_date)+'-'+new Date().getDate(item.convert_date) }
                                             </td>
                                             <td>
-                                                <form onSubmit={this.onClickHandler } >
+                                                <form onClick={(event) =>  this.inputHandler(event, item._id) } >
+                                                   
                                                     <Button action='submit' btncolour='indigo' btnname='Show'  iconname='face'  />
                                                 </form>
                                                 
@@ -79,13 +94,15 @@ class ViewFiles extends Component {
 const mapStateToProps = state => {
     return {
         token: state.auth.token,
-        fileDetails: [...state.convert.fileDetails]
+        fileDetails: [...state.convert.fileDetails],
+        singleFIle: [...state.convert.singleFIle]
     }
 }
 
 const mapPropsToState = dispatch => {
     return {
         onAuthoSignIn: () => { dispatch( checkAuthState() )},
+        onGetFile: (token, id) => { dispatch( getFIleprocess(token, id)) },
         onGetFiles: (token) => { dispatch(getFiles(token)) }
     }
 }

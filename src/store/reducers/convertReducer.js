@@ -10,7 +10,8 @@ const initialState = {
     error: null,
     message: null,
     fileDetails: [],
-    fileEmpty: null
+    fileEmpty: null,
+    singleFIle: [],
 
 }
 
@@ -29,13 +30,25 @@ const conversionFailed = (state, action) => {
     }
 }
 
-
+const getSIngleFIle = (state, action) => {
+    return {
+        ...state,
+        singleFIle: [...action.file]
+    }
+}
 
 const getConvertedFiles = (state, action) => {
     return {
         ...state,
         fileDetails: [...action.fileDetails],
         loading: false
+    }
+}
+
+const getFileFailed = (state, action) => {
+    return {
+        ...state, 
+        error: action.error
     }
 }
 
@@ -56,11 +69,7 @@ const clear = (state, action) => {
 }
 
 const conversionSuccess = (state, action) => {
-    // const fc = [...action.fileContent]
-    // const xFc = [];
-    // for (const y of fc) {
-    //     xFc.push(y)
-    // }
+    
     return {
         ...state,
         filename: action.filename,
@@ -76,8 +85,10 @@ const reducer  = (state=initialState, action) =>{
         case actionTypes.CONVERSION_SUCCESS: return conversionSuccess(state, action);
         case actionTypes.CONVERSION_FAILED: return conversionFailed(state, action);
         case actionTypes.GET_CONVERTED_FILES : return getConvertedFiles(state, action);
+        case actionTypes.GET_FILE : return getSIngleFIle(state, action);
         case actionTypes.EMPTY_FILE : return emptyFile(state, action);
-        case actionTypes.CLEAR_MESSAGE : return clear(state, clear);
+        case actionTypes.CLEAR_MESSAGE : return clear(state, action);
+        case actionTypes.GET_FILE_FAILED : return getFileFailed(state, action)
         default:
             return state;
     }

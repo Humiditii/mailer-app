@@ -14,6 +14,12 @@ export const conversionFailed = (error) => {
     }
 }
 
+export const getFileFailed = (error) => {
+    return {
+        type: actionTypes.GET_FILE_FAILED,
+        error: error
+    }
+}
 
 export const conversionSuccess = (filename,[...fileContent]) => {
     return {
@@ -27,6 +33,13 @@ export const getConvertedFiles = ([...fileDetails]) => {
     return {
         type: actionTypes.GET_CONVERTED_FILES,
         fileDetails: [...fileDetails]
+    }
+}
+
+export const getSingFile = ([...file]) => {
+    return {
+        type: actionTypes.GET_FILE,
+        file: [...file]
     }
 }
 
@@ -84,6 +97,31 @@ export const conversionProcess = (token, fileToConvert) => {
 
     }
 }
+
+export const getFIleprocess = (token, id) => {
+    return dispatch => {
+        dispatch(initConversion());
+        const endpoint = `/convert/files/${id}`;
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        }   
+
+        axios.get(endpoint, config).then( result=> {
+            console.log(result)
+
+            dispatch(getSingFile([...result.data.data]))
+
+        }).catch(err => {
+
+            console.log(err)
+            dispatch(getFileFailed(err))
+        });
+    }
+}
+ 
 
 export const getFiles = (token) => {
     return dispatch => {
