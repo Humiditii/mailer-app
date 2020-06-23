@@ -68,6 +68,13 @@ const clear = (state, action) => {
     }
 }
 
+const closeFile = (state, action) => {
+    return {
+        ...state, 
+        singleFIle: []
+    }
+}
+
 const conversionSuccess = (state, action) => {
     
     return {
@@ -88,7 +95,8 @@ const reducer  = (state=initialState, action) =>{
         case actionTypes.GET_FILE : return getSIngleFIle(state, action);
         case actionTypes.EMPTY_FILE : return emptyFile(state, action);
         case actionTypes.CLEAR_MESSAGE : return clear(state, action);
-        case actionTypes.GET_FILE_FAILED : return getFileFailed(state, action)
+        case actionTypes.GET_FILE_FAILED : return getFileFailed(state, action);
+        case actionTypes.CLOSE_FILE : return closeFile(state, action);
         default:
             return state;
     }

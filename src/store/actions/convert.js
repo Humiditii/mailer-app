@@ -56,6 +56,12 @@ export const clear = () => {
     }
 }
 
+export const closeFile = () => {
+    return {
+        type: actionTypes.CLOSE_FILE
+    }
+}
+
 
 export const clearMessage = () => {
     return dispatch => {
