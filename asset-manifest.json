@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/mailer-app/static/css/main.157aab26.chunk.css",
-    "main.js": "/mailer-app/static/js/main.6f7aa973.chunk.js",
-    "main.js.map": "/mailer-app/static/js/main.6f7aa973.chunk.js.map",
+    "main.js": "/mailer-app/static/js/main.ed2d58cf.chunk.js",
+    "main.js.map": "/mailer-app/static/js/main.ed2d58cf.chunk.js.map",
     "runtime-main.js": "/mailer-app/static/js/runtime-main.6013026b.js",
     "runtime-main.js.map": "/mailer-app/static/js/runtime-main.6013026b.js.map",
     "static/css/2.5a510433.chunk.css": "/mailer-app/static/css/2.5a510433.chunk.css",
     "static/js/2.03d9527a.chunk.js": "/mailer-app/static/js/2.03d9527a.chunk.js",
     "static/js/2.03d9527a.chunk.js.map": "/mailer-app/static/js/2.03d9527a.chunk.js.map",
     "index.html": "/mailer-app/index.html",
-    "precache-manifest.b2c8aaabf56e0ef81cdbe09a094aaf40.js": "/mailer-app/precache-manifest.b2c8aaabf56e0ef81cdbe09a094aaf40.js",
+    "precache-manifest.59b5b3b206538ced20b871dc4221243d.js": "/mailer-app/precache-manifest.59b5b3b206538ced20b871dc4221243d.js",
     "service-worker.js": "/mailer-app/service-worker.js",
     "static/css/2.5a510433.chunk.css.map": "/mailer-app/static/css/2.5a510433.chunk.css.map",
     "static/css/main.157aab26.chunk.css.map": "/mailer-app/static/css/main.157aab26.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.5a510433.chunk.css",
     "static/js/2.03d9527a.chunk.js",
     "static/css/main.157aab26.chunk.css",
-    "static/js/main.6f7aa973.chunk.js"
+    "static/js/main.ed2d58cf.chunk.js"
   ]
 }
