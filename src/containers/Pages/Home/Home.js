@@ -11,7 +11,7 @@ const home = () => {
             <div align='center'>
                     <img alt='img' src={img} height='300px' width='85%' />
                 </div>
-                <h5>Welcome Mailer App</h5> <br /> 
+                <h5>Welcome to Mailer App</h5> <br /> 
                 <div>
                 <h6 align='center' style={{ fontSize:'26px' }}> Send anonymous mails to anyone, without being authenticated to any Google account</h6>
                 </div> <br />
