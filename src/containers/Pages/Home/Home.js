@@ -9,7 +9,7 @@ const home = () => {
         <Aux>
             <div className={classes.home}>
             <div align='center'>
-                    <img src={img} height='300px' width='85%' />
+                    <img alt='img' src={img} height='300px' width='85%' />
                 </div>
                 <h5>Welcome Mailer App</h5> <br /> 
                 <div>

@@ -6,7 +6,7 @@ import classes from './Preloader.module.css';
 const preloader = () => (
     <Aux>
         <div className={classes.Loader}>Loading...</div>
-        <p align='center' style={{color:'indigo'}}>Loading...</p>
+        <p align='center' style={{color:'red'}}>Sending...</p>
     </Aux>
     
 );

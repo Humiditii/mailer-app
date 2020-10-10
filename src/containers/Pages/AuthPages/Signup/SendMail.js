@@ -30,7 +30,11 @@ class SendMail extends Component {
     onSubmitHandler = (event) => {
         event.preventDefault();
         const {email, from, subject, message} = this.state;
+        if(!email || !from || !subject || !message  ){
+            return alert('Fields can not be empty')
+        }else{
             this.props.onSignUp(email,from, subject, message);
+        }
         
     }
 
