@@ -3,7 +3,6 @@ import Aux from '../../hoc/Auxillary';
 import NavUrl from './NavUrl/NavUrl';
 import M from 'materialize-css';
 import {NavLink, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
 
 class Navbar extends Component  {
     componentDidMount(){
@@ -17,24 +16,16 @@ class Navbar extends Component  {
     render(){
 
         let navConfigs = {
-            links: ['/', '/login', '/register' ],
-            name: ['Home', 'Login', 'Register' ]
-        }
-
-
-        if( this.props.token){
-            navConfigs = {
-                links: ['/',  '/files_converted', '/convert', '/logout'],
-                name: ['Home', 'Files Converted', 'Convert', 'Logout' ]
-            }
+            links: ['/', '/send' ],
+            name: ['Home', 'Send Mail' ]
         }
         
         return (
             <Aux>
 
             <nav>
-                <div className="nav-wrapper  indigo lighten-1">
-                    <NavLink to="#" className="brand-logo">Convertor</NavLink>
+                <div className="nav-wrapper  red lighten-1">
+                    <NavLink to="#" className="brand-logo">Mailer</NavLink>
                     <NavLink to="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></NavLink>
                         <ul className="right hide-on-med-and-down">
                             { navConfigs.links.map( (item, index) => (
@@ -55,12 +46,7 @@ class Navbar extends Component  {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        token: state.auth.token
-    }
-}
 
-export default connect(mapStateToProps)(withRouter(Navbar)); 
+export default (withRouter(Navbar)); 
 
 

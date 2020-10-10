@@ -6,16 +6,14 @@ import './index.css';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import authReducer from './store/reducers/authReducer';
-import convertReducer from './store/reducers/convertReducer';
+import sendReducer from './store/reducers/sendReducer';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-    auth: authReducer,
-    convert: convertReducer
+    send: sendReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

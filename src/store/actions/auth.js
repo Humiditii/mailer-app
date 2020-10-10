@@ -3,88 +3,39 @@ import axios from '../../axios-instance';
 import * as actionTypes from './actionTypes';
 
 
-export const authStart = () =>{
+export const sendStart = () =>{
     return {
-        type: actionTypes.AUTH_START,
+        type: actionTypes.SEND_START,
         
     };
 };
 
-export const authSignUp = (signupMsg) => {
+export const sent = (message) => {
     return {
-        type: actionTypes.SIGNUP,
-        signupMsg: signupMsg
-    };
-};
-
-
-export const redirectAuth = () => {return {type: actionTypes.REDIRECT}
- }
-
-export const mismatch = () => {
-    return {
-        type: actionTypes.MISMATCH
-    }
-}
-
-export const login = () => {
-    return {
-        type: actionTypes.LOGIN
-    }
-}
-
-export const authSuccess = (userId, token, role, message) => {
-    return {
-        type: actionTypes.AUTH_SUCCESS,
-        token: token,
-        userId: userId,
-        role: role,
-        authMessage: message
-
+        type: actionTypes.SENT,
+        message: message
     };
 };
 
 
 
-export const authFail = (error) => {
+export const sendFailed = (error) => {
     return{
-        type: actionTypes.AUTH_FAIL,
+        type: actionTypes.SEND_FAILED,
         error: error
     };
 };
 
-
-export const logout = () => {
-
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('message');
-    localStorage.removeItem('expirationDate');
-
-    return{
-        type: actionTypes.AUTH_LOGOUT
-    }
-}
-
-
-
-export const checkAuthTimeout = (expiresIn) => {
+export const sender = (email,from, subject, message) => {
     return dispatch => {
-
-        setTimeout(() => {
-            dispatch(logout());
-        }, expiresIn);
-    }
-}
-
-export const signUp = (email,password) => {
-    return dispatch => {
-        dispatch(authStart());
+        dispatch(sendStart());
         const body = {
-            email: email,
-            password: password
+            mail: email,
+            from: from+'@anonymous',
+            subject: subject,
+            message: message
         }
-        const endpoint = '/auth/signup';
+        const endpoint = '/send/to_one';
 
         axios.post(endpoint, body, {
             headers:{
@@ -92,86 +43,12 @@ export const signUp = (email,password) => {
             }
         }).then(response => {   
             //console.log(response);
-           dispatch(authSignUp(response.data.message));
+           dispatch(sent(response.data.message));
            
         }).catch(err => {
             //console.log(err)
-            dispatch(authFail(err.message));
+            dispatch(sendFailed(err.message));
         });
     }
 }
 
-
-
-export const signIn = (email,password) => {
-    return dispatch => {
-        dispatch(authStart());
-        const body =  {
-            email: email,
-            password: password
-        }
-        //console.log(body)
-        const config =  {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-        const endpoint = '/auth/signin';
-
-        axios.post(endpoint, body, config).then(response => {
-            //console.log(response.data.message);
-            if( response.data.message === 'User does not exist'){
-               return dispatch(authFail(response.data.message))
-            } 
-            if( response.data.message === 'Invalid Password'){
-                return dispatch(authFail(response.data.message))
-            }
-            else{
-                const token = response.data.token;
-                const userId = response.data.userId;
-                const message = response.data.Message;
-                const expiresIn = 3600 * 23* 1000;
-                const expirationDate =new Date(new Date().getTime() + expiresIn);
-
-                localStorage.setItem('token', token);
-                localStorage.setItem('userId', userId);
-                localStorage.setItem('message', message);
-                localStorage.setItem('expirationDate', expirationDate);
-
-                //console.log(message);
-                dispatch(authSuccess(userId, token, message));
-                dispatch(redirectAuth())
-                dispatch(checkAuthTimeout(expiresIn));
-             }
-            
-            
-        }).catch( err=> {
-            //console.log(err)
-            dispatch(authFail(err.message));
-        });
-    }
-}
-
-export const checkAuthState = () => {
-    return dispatch => {
-        const token = localStorage.getItem('token');
-        if(!token){
-            dispatch(logout());
-            //console.log('First logout excecuted');
-        }else{
-            const expirationDate = new Date(localStorage.getItem('expirationDate'));
-            if(expirationDate <= new Date()){
-                dispatch(logout());
-                //console.log('Second logout excecuted');
-            }else{
-                const userId = localStorage.getItem('userId');
-                const message = localStorage.getItem('message');
-                dispatch(authSuccess(userId, token, message));
-                //dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime())/1000));
-                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) ));
-                //console.log((expirationDate.getTime() - new Date().getTime()) / 1000);
-                //console.log('worked to this extent');
-            }
-        }
-    }
-}

@@ -2,17 +2,21 @@ import React from 'react';
 import Aux from '../../../hoc/Auxillary';
 import classes from './home.module.css';
 import Button from '../../../components/Ui/Button/Button';
+import img from '../../../imgs/Anonymous.jpg'
 
 const home = () => {
     return (
         <Aux>
             <div className={classes.home}>
-                <h5>Welcome to the convertor app</h5> <br /> <br /> <br />
+            <div align='center'>
+                    <img src={img} height='300px' width='85%' />
+                </div>
+                <h5>Welcome Mailer App</h5> <br /> 
                 <div>
-                <h6>Converts a regular pattern of XML files and extract the texts out of the xml tags, all you need to do is Signup then proceed to signin to be able to upload files and convert. You can also view the lists of the converted files you have in your database.</h6>
+                <h6 align='center' style={{ fontSize:'26px' }}> Send anonymous mails to anyone, without being authenticated to any Google account</h6>
                 </div> <br />
                 <div align='center' >
-                    <Button btncolour='indigo' btnname='Get Started' actionType='link' iconname='directions_bike' whereto='/register' />
+                    <Button btncolour='green' btnname='Get Started' actionType='link' iconname='directions_bike' whereto='/send' />
                 </div>
             </div>
         </Aux>
