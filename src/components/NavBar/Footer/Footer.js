@@ -12,7 +12,7 @@ class Footer extends Component {
                     <div className="footer-copyright">
                         <div className="container" align='center'>
 
-                       Developed by Babatunde Hameed 0. © {new Date().getFullYear()} Copyright 
+                       Developed by Babatunde Hameed 0. © {new Date().getFullYear()} Copyright <br/>
                        
                        Contact via mail <i className="tiny material-icons">forward</i> <a href='mailto: humiditii45@gmail.com' ><i className="tiny material-icons">mail</i></a> <br/>
                        <i className="tiny material-icons">star</i><i className="tiny material-icons">star</i><i className="tiny material-icons">star</i>

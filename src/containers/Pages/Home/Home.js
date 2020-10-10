@@ -11,13 +11,18 @@ const home = () => {
             <div align='center'>
                     <img alt='img' src={img} height='300px' width='85%' />
                 </div>
-                <h5>Welcome to Mailer App</h5> <br /> 
+                <h5 style={{color: 'red'}}>Welcome to Mailer App</h5> <div align='center'>
+                <i className="material-icons small">textsms</i>
+                </div> <br /> 
                 <div>
                 <h6 align='center' style={{ fontSize:'26px' }}> Send anonymous mails to anyone, without being authenticated to any Google account</h6>
+                <div align='center'>
+                <i className="material-icons small">visibility_off</i>
+                </div>
                 </div> <br />
                 <div align='center' >
                     <Button btncolour='green' btnname='Get Started' actionType='link' iconname='directions_bike' whereto='/send' />
-                </div>
+                </div> <br/>
             </div>
         </Aux>
     );
